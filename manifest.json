@@ -1,11 +1,11 @@
 {
-    "name": "Covid-19 Stats UK",
+    "name": "SenorYuen Chrome Extension Trial",
     "version": "1.0.0",
-    "description": "latest covid data of UK",
+    "description": "does stuff or something",
     "manifest_version": 3,
-    "author": "Sampurna Chapagain",
+    "author": "Adam Yuen",
     "action":{
-        "default_popup": "index.html",
-        "default_title": "Latest Covid Report"
+        "default_popup": "main.html",
+        "default_title": "default_title here"
     }
 }
