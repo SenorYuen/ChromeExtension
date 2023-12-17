@@ -1,0 +1,11 @@
+{
+    "name": "SenorYuen Chrome Extension Trial",
+    "version": "1.0.0",
+    "description": "does stuff or something",
+    "manifest_version": 3,
+    "author": "Adam Yuen",
+    "action":{
+        "default_popup": "main.html",
+        "default_title": "default_title here"
+    }
+}
