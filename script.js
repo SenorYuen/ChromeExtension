@@ -2,42 +2,64 @@ document.addEventListener('DOMContentLoaded', function () {
     const countdownElement = document.getElementById('countdown');
     const countdownForm = document.getElementById('countdownForm');
     const setCountdownButton = document.getElementById('setCountdown');
+    const removeCountdownButton = document.getElementById('removeCountdown');
     const datetimeInput = document.getElementById('datetime');
+    const labelInput = document.getElementById('label');
   
-    let targetDate;
+    let targetDates = [];
   
     // Check if the chrome object is available (indicating it's running in a Chrome extension)
-    console.log(chrome);
     if (typeof chrome !== 'undefined' && chrome.storage) {
-      // Load target date from storage on extension startup
-      chrome.storage.sync.get(['targetDate'], function (result) {
-        targetDate = result.targetDate || 0;
+      // Load target dates from storage on extension startup
+      chrome.storage.sync.get(['targetDates'], function (result) {
+        targetDates = result.targetDates || [];
         updateCountdown();
       });
   
       function updateCountdown() {
-        const currentDate = new Date().getTime();
-        const timeDifference = targetDate - currentDate;
+        let html = '';
   
-        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+        for (let i = 0; i < targetDates.length; i++) {
+          const currentDate = new Date().getTime();
+          const timeDifference = targetDates[i].date - currentDate;
   
-        countdownElement.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+          const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+  
+          const label = targetDates[i].label || 'Unnamed';
+  
+          html += `<div><strong>${label}:</strong><br> ${days}d ${hours}h ${minutes}m ${seconds}s</div>`;
+        }
+  
+        countdownElement.innerHTML = html;
       }
   
       function setTargetDate() {
         const inputDateTime = datetimeInput.value;
-        targetDate = new Date(inputDateTime).getTime();
+        const newTargetDate = new Date(inputDateTime).getTime();
+        const label = labelInput.value;
   
-        // Save target date to storage
-        chrome.storage.sync.set({ 'targetDate': targetDate });
+        // Save new target date and label to the array in storage
+        targetDates.push({ date: newTargetDate, label: label });
+        chrome.storage.sync.set({ 'targetDates': targetDates });
+  
+        updateCountdown();
+      }
+  
+      function removeTargetDate() {
+        const labelToRemove = labelInput.value;
+  
+        // Remove the specified date from the array
+        targetDates = targetDates.filter(date => date.label !== labelToRemove);
+        chrome.storage.sync.set({ 'targetDates': targetDates });
   
         updateCountdown();
       }
   
       setCountdownButton.addEventListener('click', setTargetDate);
+      removeCountdownButton.addEventListener('click', removeTargetDate);
   
       // Update the countdown every second
       setInterval(updateCountdown, 1000);
