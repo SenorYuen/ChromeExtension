@@ -4,6 +4,7 @@
     "description": "does stuff or something",
     "manifest_version": 2,
     "author": "Adam Yuen",
+    "permissions": ["storage"],
     "browser_action":{
         "default_popup": "main.html",
         "default_title": "titleHoverThing"
