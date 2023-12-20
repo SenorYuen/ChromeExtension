@@ -1,12 +1,22 @@
-async function fetchData() {
-    const res=await fetch ("https://api.coronavirus.data.gov.uk/v1/data"); //this is the api conenction
-    const record=await res.json();
-    document.getElementById("date").innerHTML=record.data[0].date;
-    document.getElementById("areaName").innerHTML=record.data[0].areaName;
-    document.getElementById("latestBy").innerHTML=record.data[0].latestBy;
-    document.getElementById("deathNew").innerHTML=record.data[0].deathNew;
-}
-fetchData();
-// function defintion for fetching data from the api
-// JSON data is stored in record.
- 
+document.addEventListener('DOMContentLoaded', function () {
+    const countdownElement = document.getElementById('countdown');
+  
+    // Set the target date (replace with your desired date and time)
+    const targetDate = new Date('December 31, 2023 23:59:59').getTime();
+  
+    function updateCountdown() {
+      const currentDate = new Date().getTime();
+      const timeDifference = targetDate - currentDate;
+  
+      const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+  
+      countdownElement.innerText = `${minutes}m ${seconds}s`;
+    }
+  
+    // Update the countdown every second
+    setInterval(updateCountdown, 1000);
+  
+    // Initial update
+    updateCountdown();
+  });
