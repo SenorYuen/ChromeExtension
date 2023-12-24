@@ -3,39 +3,91 @@ body {
   text-align: center;
   font-family: "Ubuntu";
   border: 3px solid #ffffff;
-  background-color: #7094bd;
+  background-color: #272727fd;
   padding: 5px;
-  background-image: "bgimg.jpg";
 }
 
 h1 {
-  border-bottom: 2px solid #ffffff;
+  border-bottom: 2px solid #f88f05;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+  color: white;
 }
   
 #countdown {
-  font-size: 20px;
+  font-size: 15px;
   margin-top: 20px;
-  border-top: white solid 1px;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  border-top: #f88f05 solid 1px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: white;
 }
 
 .test {
-  padding-bottom: 3px;
+  padding-bottom: 5px;
 }
 
 .mainButton {
-  border: 2px solid #151e9b ;
+  border: 2px solid #b96c06 ;
   border-radius: 3px;
-  font-size: 15px;
+  font-size: 13px;
   transition: 0.72s;
   margin: 3px;
+  background-color: #3b3b3bfd;
+  color: rgb(206, 206, 206);
 }
 
 .mainButton:hover {
   border-radius: 15px;
-  border-color: #020a53;
+  border-color: #f88f05;
+  color: white;
 }
 
+/* # denotes a form type, . denotes a div type */
+#countdownForm {
+  color: white;
+}
+
+.datePicker {
+  font-family: "Ubuntu";
+  border: 1px black solid;
+  border-radius: 5px;
+  transition: 0.72s;
+  background: rgb(177, 177, 177);
+}
+
+.datePicker:hover {
+  border-radius: 15px;
+  border-color: #f88f05;
+  background: white;
+}
+
+.textFieldClass {
+  font-family: "Ubuntu";
+  border: 1px black solid;
+  border-radius: 5px;
+  transition: 0.72s;
+  background: rgb(177, 177, 177);
+}
+
+.textFieldClass:hover {
+  border-radius: 15px;
+  border-color: #f88f05;
+  background: white;
+}
+
+.logoClass {
+  margin-top: 6px;
+}
+
+.cdColourR {
+  color: rgb(223, 141, 141);
+}
+
+.cdColourY {
+  color: rgb(209, 147, 65);
+}
+
+.cdColourW {
+   color: rgb(211, 211, 211);
+}

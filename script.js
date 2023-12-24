@@ -32,9 +32,19 @@ document.addEventListener('DOMContentLoaded', function () {
   
           const label = targetDates[i].label || 'Unnamed';
           // Stores the label name of our given times. 
-  
-          html += `<div class="test"><strong>${label}:</strong><br> ${days}d ${hours}h ${minutes}m ${seconds}s</div>`;
-          // Prints the TIME using HTML tags. 
+          
+          if ((days == 0)) {
+            if ((hours == 0)) {
+              html += `<div class="test"><strong>${label}:</strong><br> <div class="cdColourR"> ${days}d ${hours}h ${minutes}m ${seconds}s </div></div>`;
+              continue;
+            }
+            html += `<div class="test"><strong>${label}:</strong><br> <div class="cdColourY"> ${days}d ${hours}h ${minutes}m ${seconds}s </div></div>`;
+            continue;
+          } 
+          else {
+            html += `<div class="test"><strong>${label}:</strong><br> <div class="cdColourW"> ${days}d ${hours}h ${minutes}m ${seconds}s </div></div>`;
+          } 
+          // Prints the TIME using HTML tags in different colours depending on their urgency. 
         }
   
         countdownElement.innerHTML = html;

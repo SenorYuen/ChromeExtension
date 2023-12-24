@@ -1,7 +1,7 @@
 {
-    "name": "SenorYuen Chrome Extension Trial",
+    "name": "Antilapse",
     "version": "1.0.0",
-    "description": "does stuff or something",
+    "description": "A tool to help people avoid procrastinating by reminding them of the constant, inevitable passing of time.",
     "manifest_version": 2,
     "author": "Adam Yuen",
     "permissions": ["storage"],
