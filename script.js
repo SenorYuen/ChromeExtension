@@ -1,16 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
     const countdownElement = document.getElementById('countdown');
-    const countdownForm = document.getElementById('countdownForm');
     const setCountdownButton = document.getElementById('setCountdown');
     const removeCountdownButton = document.getElementById('removeCountdown');
     const datetimeInput = document.getElementById('datetime');
     const labelInput = document.getElementById('label');
   
     let targetDates = [];
+    // An array that will store our different desired dates. 
   
     // Check if the chrome object is available (indicating it's running in a Chrome extension)
     if (typeof chrome !== 'undefined' && chrome.storage) {
-      // Load target dates from storage on extension startup
+      // Load target dates from storage on extension startup --> allows us to keep our dates
       chrome.storage.sync.get(['targetDates'], function (result) {
         targetDates = result.targetDates || [];
         updateCountdown();
@@ -18,10 +18,12 @@ document.addEventListener('DOMContentLoaded', function () {
   
       function updateCountdown() {
         let html = '';
+        //line of text used to show our countdown data. 
   
         for (let i = 0; i < targetDates.length; i++) {
           const currentDate = new Date().getTime();
           const timeDifference = targetDates[i].date - currentDate;
+          //Updates each individual countdown by subtracting the current time. 
   
           const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
           const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -29,8 +31,10 @@ document.addEventListener('DOMContentLoaded', function () {
           const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
   
           const label = targetDates[i].label || 'Unnamed';
+          // Stores the label name of our given times. 
   
-          html += `<div><strong>${label}:</strong><br> ${days}d ${hours}h ${minutes}m ${seconds}s</div>`;
+          html += `<div class="test"><strong>${label}:</strong><br> ${days}d ${hours}h ${minutes}m ${seconds}s</div>`;
+          // Prints the TIME using HTML tags. 
         }
   
         countdownElement.innerHTML = html;

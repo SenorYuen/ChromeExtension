@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="newtabStyling.css">
+<title>New Tab</title>
+<body background="bgimg.jpg">
+</head>
+<body>
+  <div id="countdown"></div>
+  <script src="script.js"></script>
+  <form method="get" action="http://www.google.com" target="_blank"></form>
+</body>
+</html>

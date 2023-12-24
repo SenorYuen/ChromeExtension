@@ -7,9 +7,10 @@
     "permissions": ["storage"],
     "browser_action":{
         "default_popup": "main.html",
-        "default_title": "titleHoverThing"
+        "default_title": "Organizizer"
     },
-    "chrome_url_overrides": {
-        "newtab": "newtab.html"
+    "icons": {
+        "1024": "logo.png"
     }
+
 }

@@ -1,0 +1,41 @@
+body {
+  width: 200px;
+  text-align: center;
+  font-family: "Ubuntu";
+  border: 3px solid #ffffff;
+  background-color: #7094bd;
+  padding: 5px;
+  background-image: "bgimg.jpg";
+}
+
+h1 {
+  border-bottom: 2px solid #ffffff;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+  
+#countdown {
+  font-size: 20px;
+  margin-top: 20px;
+  border-top: white solid 1px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.test {
+  padding-bottom: 3px;
+}
+
+.mainButton {
+  border: 2px solid #151e9b ;
+  border-radius: 3px;
+  font-size: 15px;
+  transition: 0.72s;
+  margin: 3px;
+}
+
+.mainButton:hover {
+  border-radius: 15px;
+  border-color: #020a53;
+}
+

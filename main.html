@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="styling.css">
+<link rel="stylesheet" type="text/css" href="popupStyling.css">
 </head>
 <body>
+    <h1>Important Dates:</h1>
   <form id="countdownForm">
     <label for="datetime">Enter Date and Time:</label>
     <input type="datetime-local" id="datetime" required>
     
     <!-- Added input field for label -->
     <label for="label">Label:</label>
-    <input type="text" id="label">
+    <input type="text" id="label" class="textFieldClass">
     
-    <button type="button" id="setCountdown">Set Countdown</button>
-    <button type="button" id="removeCountdown">Remove Countdown</button>
+    <button type="button" id="setCountdown" class="mainButton">Set Countdown</button>
+    <button type="button" id="removeCountdown" class="mainButton">Remove Countdown</button>
   </form>
 
   <div id="countdown"></div>
