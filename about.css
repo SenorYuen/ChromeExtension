@@ -1,0 +1,8 @@
+body {
+    width: 200px;
+    text-align: center;
+    font-family: "Ubuntu";
+    border: 3px solid #ffffff;
+    background-color: #272727fd;
+    padding: 5px;
+  }

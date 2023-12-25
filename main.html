@@ -4,19 +4,28 @@
 <link rel="stylesheet" type="text/css" href="popupStyling.css">
 </head>
 <body>
-    <img src="logoBannerLarge.png" width="200px" height="50px" class="logoClass">
-    <h1>Important Dates:</h1>
+  <img src="logoBannerLarge.png" width="200px" height="50px" class="logoClass">
+  <h1>Important Dates:</h1>
+
+  <nav class="nav">
+    <a href="main.html">Home</a>
+    <a href="about.html">About</a>
+    <span class="nav-indicator"></span>
+</nav>
+
   <form id="countdownForm">
     <label for="datetime">Enter Date and Time:</label>
     <input type="datetime-local" id="datetime" required class="datePicker">
     
-    <!-- Added input field for label -->
+    <!-- Input field for label -->
     <label for="label">Label:</label>
     <input type="text" id="label" class="textFieldClass">
     
     <button type="button" id="setCountdown" class="mainButton">Set Countdown</button>
     <button type="button" id="removeCountdown" class="mainButton">Remove Countdown</button>
   </form>
+
+
 
   <div id="countdown"></div>
   <script src="script.js"></script>

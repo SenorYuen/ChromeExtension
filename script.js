@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const removeCountdownButton = document.getElementById('removeCountdown');
     const datetimeInput = document.getElementById('datetime');
     const labelInput = document.getElementById('label');
+    // References for different elements that will be accessed in the HTML script 
   
     let targetDates = [];
     // An array that will store our different desired dates. 
@@ -33,6 +34,19 @@ document.addEventListener('DOMContentLoaded', function () {
           const label = targetDates[i].label || 'Unnamed';
           // Stores the label name of our given times. 
           
+          if ((days == 1) && (hours == 0) && (minutes == 0) && (seconds == 0)) {
+            chrome.runtime.sendMessage('', {
+              type: 'notification',
+              options: {
+                title: '1 Day To Go!',
+                message: ('The event %s will happen in 1 day', label),
+                iconUrl: 'logo.png',
+                type: 'basic',
+                priority: 0
+              }
+            });
+          }
+
           if ((days == 0)) {
             if ((hours == 0)) {
               html += `<div class="test"><strong>${label}:</strong><br> <div class="cdColourR"> ${days}d ${hours}h ${minutes}m ${seconds}s </div></div>`;

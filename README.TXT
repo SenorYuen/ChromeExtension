@@ -24,3 +24,8 @@ document.getElementById lines:
     - this element is then accessible in our HTML script. 
         - the HTML script defines what it APPEARS as to the user
         - THe JS part dictates the FUNCTION of these elements. 
+
+
+NOTIFICATION STUFF:
+https://moshfeu.medium.com/notifications-in-chrome-extension-50aac17b3b7d
+https://blog.shahednasser.com/how-to-send-notifications-in-chrome-extensions/
