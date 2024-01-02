@@ -1,8 +1,30 @@
 body {
-    width: 200px;
-    text-align: center;
-    font-family: "Ubuntu";
-    border: 3px solid #ffffff;
-    background-color: #272727fd;
-    padding: 5px;
-  }
+  width: 200px;
+  text-align: center;
+  font-family: "Ubuntu";
+  border: 3px solid #ffffff;
+  background-color: #272727fd;
+  padding: 5px;
+}
+
+.logoClass {
+  margin-top: 6px;
+  --f: 0.05;
+  /* the parallax factor (the smaller the better) */
+  --r: 0px;
+  /* radius */
+
+  --_f: calc(100% * var(--f) / (1 + var(--f)));
+  --_a: calc(90deg * var(--f));
+  aspect-ratio: calc(1 + var(--f));
+  object-fit: cover;
+  clip-path: inset(0 var(--_f) 0 0 round var(--r));
+  transform: perspective(400px) var(--_t, rotateY(var(--_a)));
+  transition: 0.72s;
+  cursor: pointer;
+}
+
+.logoClass:hover {
+  clip-path: inset(0 0 0 var(--_f) round var(--r));
+  --_t: translateX(calc(-1 * var(--_f))) rotateY(calc(-1 * var(--_a)));
+}

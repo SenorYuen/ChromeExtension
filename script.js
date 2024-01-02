@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // References for different elements that will be accessed in the HTML script 
   
     let targetDates = [];
-    // An array that will store our different desired dates. 
+    // An array that will store our different desired dates - uses objects with labels and time values.
   
     // Check if the chrome object is available (indicating it's running in a Chrome extension)
     if (typeof chrome !== 'undefined' && chrome.storage) {
@@ -34,16 +34,25 @@ document.addEventListener('DOMContentLoaded', function () {
           const label = targetDates[i].label || 'Unnamed';
           // Stores the label name of our given times. 
           
+          //notification for 1 day
           if ((days == 1) && (hours == 0) && (minutes == 0) && (seconds == 0)) {
-            chrome.runtime.sendMessage('', {
-              type: 'notification',
-              options: {
-                title: '1 Day To Go!',
-                message: ('The event %s will happen in 1 day', label),
-                iconUrl: 'logo.png',
-                type: 'basic',
-                priority: 0
-              }
+            chrome.notifications.create('1DAYTOGO', {
+              type: 'basic',
+              title: '1 Day To Go!',
+              message: 'Your event ' + label + ' will happen in 1 day.',
+              iconUrl: 'logo.png',
+              priority: 0
+            });
+          }
+
+          //notification for 1 hour
+          if ((days == 0) && (hours == 1) && (minutes == 0) && (seconds == 0)) {
+            chrome.notifications.create('1HOURTOGO', {
+              type: 'basic',
+              title: '1 Hour To Go!',
+              message: 'The event ' + label + ' will happen in 1 hour! Be sure to finish it if you haven\'t already.',
+              iconUrl: 'logo.png',
+              priority: 0
             });
           }
 
@@ -60,7 +69,6 @@ document.addEventListener('DOMContentLoaded', function () {
           } 
           // Prints the TIME using HTML tags in different colours depending on their urgency. 
         }
-  
         countdownElement.innerHTML = html;
       }
   
@@ -68,11 +76,32 @@ document.addEventListener('DOMContentLoaded', function () {
         const inputDateTime = datetimeInput.value;
         const newTargetDate = new Date(inputDateTime).getTime();
         const label = labelInput.value;
-  
+        
+        for (i = 0; i < targetDates.length; i++) {
+          if (targetDates[i].label == label) {
+            chrome.notifications.create('INVALIDLABEL', {
+              type: 'basic',
+              title: 'Invalid Entry',
+              message: 'Cannot have two list items with the same label',
+              iconUrl: 'logo.png',
+              priority: 0
+            });
+            return;
+          }
+          else {
+            continue;
+          }
+        }
+
         // Save new target date and label to the array in storage
         targetDates.push({ date: newTargetDate, label: label });
+
+        targetDates.sort(function(a, b) {
+          return a.date - b.date;
+        });
+
         chrome.storage.sync.set({ 'targetDates': targetDates });
-  
+
         updateCountdown();
       }
   
