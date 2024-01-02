@@ -7,13 +7,15 @@ body {
   padding: 5px;
 }
 
+
 h1 {
   border-bottom: 2px solid #f88f05;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   color: white;
 }
-  
+
+
 #countdown {
   font-size: 15px;
   margin-top: 20px;
@@ -23,14 +25,15 @@ h1 {
   color: white;
   transition: 0.72s;
 }
-
 #countdown:hover {
   background-color: #302f2ffd;
 }
 
+
 .test {
   padding-bottom: 5px;
 }
+
 
 .mainButton {
   border: 2px solid #b96c06 ;
@@ -41,17 +44,18 @@ h1 {
   background-color: #3b3b3bfd;
   color: rgb(206, 206, 206);
 }
-
 .mainButton:hover {
   border-radius: 15px;
   border-color: #f88f05;
   color: white;
 }
 
+
 /* # denotes a form type, . denotes a div type */
 #countdownForm {
   color: white;
 }
+
 
 .datePicker {
   font-family: "Ubuntu";
@@ -60,12 +64,12 @@ h1 {
   transition: 0.72s;
   background: rgb(177, 177, 177);
 }
-
 .datePicker:hover {
   border-radius: 15px;
   border-color: #f88f05;
   background: white;
 }
+
 
 .textFieldClass {
   font-family: "Ubuntu";
@@ -74,12 +78,12 @@ h1 {
   transition: 0.72s;
   background: rgb(177, 177, 177);
 }
-
 .textFieldClass:hover {
   border-radius: 15px;
   border-color: #f88f05;
   background: white;
 }
+
 
 .logoClass {
   margin-top: 6px;
@@ -97,23 +101,72 @@ h1 {
   transition: 0.72s;
   cursor: pointer;
 }
-
 .logoClass:hover {
   clip-path: inset(0 0 0 var(--_f) round var(--r));
   --_t: translateX(calc(-1 * var(--_f))) rotateY(calc(-1 * var(--_a)));
 }
 
+
 .cdColourR {
   color: rgb(223, 141, 141);
 }
-
 .cdColourY {
   color: rgb(209, 147, 65);
 }
-
 .cdColourW {
    color: rgb(211, 211, 211);
 }
 
+
+
+
+nav {
+  margin: 5px auto 0;
+  margin-bottom: 9px;
+  position: relative;
+  width: 150px;
+  height: 25px;
+  background-color: #15697E;
+  border: 1px solid white;
+  border-radius: 8px;
+  font-size: 0;
+}
+nav a {
+  line-height: 25px;
+  height: 100%;
+  font-size: 12px;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+}
+nav .effect {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  z-index: 0;
+  transition: all .5s ease 0s;
+  border-radius: 8px;
+}
+a:nth-child(1) {
+  width: 75px;
+}
+a:nth-child(2) {
+  width: 75px;
+}
+nav .home, a:nth-child(1):hover~.effect {
+  width: 75px;
+  left: 0;
+  background-color: #301441;
+}
+nav .about, a:nth-child(2):hover~.effect {
+  width: 75px;
+  left: 75px;
+  background-color: #301441;
+}
 
 
