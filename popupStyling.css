@@ -34,6 +34,12 @@ h1 {
   padding-bottom: 5px;
 }
 
+#quote {
+  font-size: 14px;
+  margin-top: 5px;
+  color: white;
+  transition: 0.72s;
+}
 
 .mainButton {
   border: 2px solid #b96c06 ;
@@ -116,6 +122,9 @@ h1 {
 .cdColourW {
    color: rgb(211, 211, 211);
 }
+.cdColourG {
+   color: rgb(62, 209, 87);
+}
 
 
 
@@ -126,7 +135,7 @@ nav {
   position: relative;
   width: 150px;
   height: 25px;
-  background-color: #15697E;
+  background-color: #3b3b3bfd;
   border: 1px solid white;
   border-radius: 8px;
   font-size: 0;
@@ -141,7 +150,21 @@ nav a {
   text-decoration: none;
   text-transform: uppercase;
   text-align: center;
-  color: white;
+  color: rgb(202, 202, 202);
+  transition: 0.72s;
+  cursor: pointer;
+}
+nav a:hover {
+  line-height: 25px;
+  height: 100%;
+  font-size: 12px;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  color: rgb(255, 255, 255);
   cursor: pointer;
 }
 nav .effect {
@@ -161,12 +184,12 @@ a:nth-child(2) {
 nav .home, a:nth-child(1):hover~.effect {
   width: 75px;
   left: 0;
-  background-color: #301441;
+  background-color: #25839b;
 }
 nav .about, a:nth-child(2):hover~.effect {
   width: 75px;
   left: 75px;
-  background-color: #301441;
+  background-color: #25839b;
 }
 
 

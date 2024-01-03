@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const removeCountdownButton = document.getElementById('removeCountdown');
     const datetimeInput = document.getElementById('datetime');
     const labelInput = document.getElementById('label');
+    const quoteElement = document.getElementById('quote');
     // References for different elements that will be accessed in the HTML script 
   
     let targetDates = [];
@@ -36,10 +37,11 @@ document.addEventListener('DOMContentLoaded', function () {
           
           //notification for 1 day
           if ((days == 1) && (hours == 0) && (minutes == 0) && (seconds == 0)) {
-            chrome.notifications.create('1DAYTOGO', {
+            const newNotif = '1D' + targetDates[i].label;
+            chrome.notifications.create(newNotif, {
               type: 'basic',
               title: '1 Day To Go!',
-              message: 'Your event ' + label + ' will happen in 1 day.',
+              message: 'Your event \"' + label + '\" will happen in 1 day.',
               iconUrl: 'logo.png',
               priority: 0
             });
@@ -47,10 +49,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
           //notification for 1 hour
           if ((days == 0) && (hours == 1) && (minutes == 0) && (seconds == 0)) {
-            chrome.notifications.create('1HOURTOGO', {
+            const newNotif = '1H' + targetDates[i].label;
+            chrome.notifications.create(newNotif, {
               type: 'basic',
               title: '1 Hour To Go!',
-              message: 'The event ' + label + ' will happen in 1 hour! Be sure to finish it if you haven\'t already.',
+              message: 'The event \"' + label + '\" will happen in 1 hour! Be sure to finish it if you haven\'t already.',
               iconUrl: 'logo.png',
               priority: 0
             });
@@ -63,6 +66,9 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             html += `<div class="test"><strong>${label}:</strong><br> <div class="cdColourY"> ${days}d ${hours}h ${minutes}m ${seconds}s </div></div>`;
             continue;
+          }
+          if ((days <= 7) && (days >= 1)) {
+            html += `<div class="test"><strong>${label}:</strong><br> <div class="cdColourG"> ${days}d ${hours}h ${minutes}m ${seconds}s </div></div>`;
           } 
           else {
             html += `<div class="test"><strong>${label}:</strong><br> <div class="cdColourW"> ${days}d ${hours}h ${minutes}m ${seconds}s </div></div>`;
@@ -77,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const newTargetDate = new Date(inputDateTime).getTime();
         const label = labelInput.value;
         
+        // Avoids redundant labels.
         for (i = 0; i < targetDates.length; i++) {
           if (targetDates[i].label == label) {
             chrome.notifications.create('INVALIDLABEL', {
@@ -93,18 +100,17 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         }
 
-        // Save new target date and label to the array in storage
+        // Save new target date and sort it within the array.
         targetDates.push({ date: newTargetDate, label: label });
-
         targetDates.sort(function(a, b) {
           return a.date - b.date;
         });
-
+        // Save using the Chrome storage API.
         chrome.storage.sync.set({ 'targetDates': targetDates });
-
         updateCountdown();
       }
   
+
       function removeTargetDate() {
         const labelToRemove = labelInput.value;
   
@@ -114,14 +120,37 @@ document.addEventListener('DOMContentLoaded', function () {
   
         updateCountdown();
       }
+
+
+      function pullRandomQuote() {
+        // Get the URL of a file named defaultFile.txt in the extension's package
+        var fileURL = chrome.runtime.getURL('quoteArchive.txt');
+
+        // fethcing file URL is like using iostream in C i think.
+        fetch(fileURL)
+          .then(response => response.text())
+          .then(content => {
+        
+          // sorta like using getline in C, except this is an array that has EVERY line.
+          var lines = content.split('\n');
+          var fileLen = lines.length;
+          
+          let randomQuoteIndex = Math.floor((Math.random() * fileLen));
+          quoteElement.innerHTML = lines[randomQuoteIndex];
+          
+      });
+      }
   
       setCountdownButton.addEventListener('click', setTargetDate);
       removeCountdownButton.addEventListener('click', removeTargetDate);
   
-      // Update the countdown every second
+      // Update the countdown every second and pull quote each ti
       setInterval(updateCountdown, 1000);
-    } else {
-      // Fallback behavior if not running in a Chrome extension context
+      pullRandomQuote();
+    } 
+    else 
+    {
+      // Ensures running within extension window.
       console.error('This code should be run as a Chrome extension.');
     }
   });
