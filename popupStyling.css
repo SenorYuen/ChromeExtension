@@ -8,10 +8,14 @@ body {
 }
 
 
-h1 {
+h1, h3 {
   border-bottom: 2px solid #f88f05;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+  color: white;
+}
+
+p {
   color: white;
 }
 
@@ -192,4 +196,12 @@ nav .about, a:nth-child(2):hover~.effect {
   background-color: #25839b;
 }
 
+a {
+  color:#f88f05;
+  transition: 0.72s;
+}
+
+a:hover {
+  color:rgb(209, 147, 65);
+}
 
