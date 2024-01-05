@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Check if the chrome object is available (indicating it's running in a Chrome extension)
     if (typeof chrome !== 'undefined' && chrome.storage) {
       // Load target dates from storage on extension startup --> allows us to keep our dates
+
       chrome.storage.sync.get(['targetDates'], function (result) {
         targetDates = result.targetDates || [];
         updateCountdown();
@@ -107,6 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         // Save using the Chrome storage API.
         chrome.storage.sync.set({ 'targetDates': targetDates });
+       // chrome.runtime.sendMessage({ action: 'addThis', sentLabel: label, sentTime: newTargetDate});
         updateCountdown();
       }
   
@@ -117,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Remove the specified date from the array
         targetDates = targetDates.filter(date => date.label !== labelToRemove);
         chrome.storage.sync.set({ 'targetDates': targetDates });
-  
+       // chrome.runtime.sendMessage({ action: 'deleteThis', content1: labelToRemove });
         updateCountdown();
       }
 
@@ -144,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function () {
       setCountdownButton.addEventListener('click', setTargetDate);
       removeCountdownButton.addEventListener('click', removeTargetDate);
   
-      // Update the countdown every second and pull quote each ti
+      // Update the countdown every second and pull quote each time extension is opened
       setInterval(updateCountdown, 1000);
       pullRandomQuote();
     } 
